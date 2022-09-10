@@ -2,10 +2,16 @@ const Drink = require('../models/Coffee.model')
 
 module.exports.drinkController = {
   getDrink: async (req, res) => {
-    res.json(await Drink.find())
-    res.json(drinkName)
+    const drink = await Drink.find()
+    const drinkNew = drink.map((person) => {
+      const personEnd = `id: ${person._id}, drinkName: ${person.drinkName}, price: ${person.price}`
+      return personEnd
+    })
+    res.json(drinkNew)
   },
-  getDrinkInStock: async (req, res) => {},
+  getDrinkInStock: async (req, res) => {
+    const coffee = await Drink.find()
+  },
   getDrinkID: async (req, res) => {},
   postDrink: async (req, res) => {
     await Drink.create({

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const drinkeSchema = mongoose.Schema({
   drinkName: String,
   price: String,
-  available: String,
+  available: Boolean,
   caffeine: String,
   volume: String,
   description: String,
