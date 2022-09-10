@@ -24,7 +24,7 @@ module.exports.drinkController = {
     res.json(drinkInStock2)
   },
   getDrinkID: async (req, res) => {
-    await Drink.findById(req.params.id)
+    res.json(await Drink.findById(req.params.id))
   },
   postDrink: async (req, res) => {
     await Drink.create({
@@ -37,6 +37,19 @@ module.exports.drinkController = {
     })
     res.json('News added')
   },
-  deleteDrink: async (req, res) => {},
-  patchDrink: async (req, res) => {},
+  deleteDrink: async (req, res) => {
+    await Drink.findByIdAndRemove(req.params.id)
+    res.json('coffee delete')
+  },
+  patchDrink: async (req, res) => {
+    await Drink.findByIdAndUpdate(req.params.id, {
+      drinkName: req.body.drinkName,
+      price: req.body.price,
+      available: req.body.available,
+      caffeine: req.body.caffeine,
+      volume: req.body.volume,
+      description: req.body.description,
+    })
+    res.json('coffee updated')
+  },
 }
