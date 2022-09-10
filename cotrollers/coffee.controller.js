@@ -10,7 +10,7 @@ module.exports.drinkController = {
       })
       res.json(drinkNew)
     } catch (e) {
-      res.json({ error: 'Ошибка при добавлении нового напитка' })
+      res.json({ error: 'Ошибка при показе списка' })
     }
   },
   getDrinkInStock: async (req, res) => {
@@ -28,14 +28,14 @@ module.exports.drinkController = {
       })
       res.json(drinkInStock2)
     } catch (e) {
-      res.json({ error: 'Ошибка при добавлении нового напитка' })
+      res.json({ error: 'Ошибка при показе определенного списка' })
     }
   },
   getDrinkID: async (req, res) => {
     try {
       res.json(await Drink.findById(req.params.id))
     } catch (e) {
-      res.json({ error: 'Ошибка при добавлении нового напитка' })
+      res.json({ error: 'Ошибка при показе определенного напитка' })
     }
   },
   postDrink: async (req, res) => {
@@ -58,7 +58,7 @@ module.exports.drinkController = {
       await Drink.findByIdAndRemove(req.params.id)
       res.json('coffee delete')
     } catch (e) {
-      res.json({ error: 'Ошибка при добавлении нового напитка' })
+      res.json({ error: 'Ошибка при удалении напитка' })
     }
   },
   patchDrink: async (req, res) => {
@@ -73,7 +73,7 @@ module.exports.drinkController = {
       })
       res.json('coffee updated')
     } catch (e) {
-      res.json({ error: 'Ошибка при добавлении нового напитка' })
+      res.json({ error: 'Ошибка при изменении напитка' })
     }
   },
 }
