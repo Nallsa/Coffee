@@ -10,9 +10,22 @@ module.exports.drinkController = {
     res.json(drinkNew)
   },
   getDrinkInStock: async (req, res) => {
-    const coffee = await Drink.find()
+    const drinkInStock = await Drink.find()
+    const drinkInStockNew = drinkInStock.filter((person) => {
+      if (person.available === true) {
+        return true
+      }
+    })
+
+    const drinkInStock2 = drinkInStockNew.map((person) => {
+      const personEnd = `id: ${person._id}, drinkName: ${person.drinkName}, price: ${person.price}`
+      return personEnd
+    })
+    res.json(drinkInStock2)
   },
-  getDrinkID: async (req, res) => {},
+  getDrinkID: async (req, res) => {
+    await Drink.findById(req.params.id)
+  },
   postDrink: async (req, res) => {
     await Drink.create({
       drinkName: req.body.drinkName,

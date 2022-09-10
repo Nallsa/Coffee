@@ -4,6 +4,8 @@ const router = Router()
 
 router.get('/drinks', drinkController.getDrink)
 router.post('/drinks', drinkController.postDrink)
+router.get('/drinks/in-stock', drinkController.getDrinkInStock)
+
 // router.delete('/news/:id', newsController.delNews)
 // router.patch('/news/:id', newsController.pthNews)
 // router.get('/news/:id', newsController.getNews3)
