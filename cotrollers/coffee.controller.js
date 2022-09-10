@@ -4,11 +4,15 @@ module.exports.drinkController = {
   getDrink: async (req, res) => {
     try {
       const drink = await Drink.find()
-      const drinkNew = drink.map((person) => {
-        const personEnd = `id: ${person._id}, drinkName: ${person.drinkName}, price: ${person.price}`
-        return personEnd
+      const drinkMass = drink.map((person) => {
+        const obj = {
+          _id: person._id,
+          drinkName: person.drinkName,
+          price: person.price,
+        }
+        return obj
       })
-      res.json(drinkNew)
+      res.json(drinkMass)
     } catch (e) {
       res.json({ error: 'Ошибка при показе списка' })
     }
@@ -16,17 +20,17 @@ module.exports.drinkController = {
   getDrinkInStock: async (req, res) => {
     try {
       const drinkInStock = await Drink.find()
-      const drinkInStockNew = drinkInStock.filter((person) => {
+      const drinkInStockMass = drinkInStock.map((person) => {
         if (person.available === true) {
-          return true
+          const obj = {
+            _id: person._id,
+            drinkName: person.drinkName,
+            price: person.price,
+          }
+          return obj
         }
       })
-
-      const drinkInStock2 = drinkInStockNew.map((person) => {
-        const personEnd = `id: ${person._id}, drinkName: ${person.drinkName}, price: ${person.price}`
-        return personEnd
-      })
-      res.json(drinkInStock2)
+      res.json(drinkInStockMass)
     } catch (e) {
       res.json({ error: 'Ошибка при показе определенного списка' })
     }
