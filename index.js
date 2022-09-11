@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const app = exrpess()
 
 app.use(exrpess.json())
-app.use(require('./routes/coffee.routes'))
+app.use(require('./routes/coffee.route'))
 
 mongoose
   .connect(
